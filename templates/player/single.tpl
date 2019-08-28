@@ -1,7 +1,7 @@
 {% extends "index.tpl"%}
 {% block content %}
 <h2>{{player.label|raw}} 
-  <small class="text-muted"> | <a href="http://www.byond.com/members/{{player.ckey}}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Byond</a> | <a href="https://tgstation13.org/tgdb/playerdetails.php?ckey={{player.ckey}}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> tgdb</a></small>
+  <small class="text-muted"> | <a href="http://www.byond.com/members/{{player.ckey}}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Byond</a> | <a href="https://shadow-station.com/tgdb/playerdetails.php?ckey={{player.ckey}}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> tgdb</a></small>
 </h2>
 <hr>
 <div class="row">

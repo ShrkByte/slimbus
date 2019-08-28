@@ -36,7 +36,7 @@ class LogsController Extends Controller {
       'headers' => ['Accept-Encoding' => 'gzip'],
       'curl' => [
           CURLOPT_FOLLOWLOCATION => TRUE,
-          CURLOPT_REFERER => "atlantaned.space",
+          CURLOPT_REFERER => "shadow-station.com",
         ]
       ]);
     } catch (GCeption $e){
