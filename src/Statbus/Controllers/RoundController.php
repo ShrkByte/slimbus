@@ -32,6 +32,7 @@ class RoundController Extends Controller {
   public function __construct(ContainerInterface $container) {
     parent::__construct($container);
     $this->pages = ceil($this->DB->cell("SELECT count(tbl_round.id) FROM tbl_round") / $this->per_page);
+    $this->sc = new StatController($this->container);
 
     $this->roundModel = new Round($this->container->get('settings')['statbus']);
 
@@ -89,8 +90,8 @@ class RoundController Extends Controller {
       }
       return $round->stat;
     }
-    $round->stats = (new StatController($this->DB))->getStatsForRound($round->id);
-    $round->data = (new StatController($this->DB))->getStatsForRound($round->id,[
+    $round->stats = $this->sc->getStatsForRound($round->id);
+    $round->data = $this->sc->getStatsForRound($round->id,[
       'nuclear_challenge_mode',
       'testmerged_prs',
       'newscaster_stories'
@@ -107,7 +108,7 @@ class RoundController Extends Controller {
 
   public function stat(object $round, string $stat, $response){
     $stat = filter_var($stat, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-    $round->stat = (new StatController($this->DB))->getRoundStat($round->id, $stat);
+    $round->stat = (new StatController($this->container))->getRoundStat($round->id, $stat);
     $url = parent::getFullURL($this->router->pathFor('round.single',[
       'id'   =>$round->id,
       'stat' =>$stat
